@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+const apiUrl = import.meta.env.VITE_BACKEND_URL; 
 
 interface Post {
   id: number;
@@ -20,7 +21,7 @@ export const Blog = () => {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:3000/api/post");
+        const response = await fetch(`${apiUrl}/posts`);
         const result = await response.json();
         const data: Post[] = result.data;
         const message: string = result.message;
